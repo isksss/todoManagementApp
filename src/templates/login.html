@@ -1,0 +1,18 @@
+{{ define "content" }}
+
+<h1>Login</h1>
+<div id="container">
+    <form class="login_form" method="post" action="/login/auth">
+        <p>e-mail</p>
+        <input type="email" id="email"><br>
+        <p>password</p>
+        <input type="password" id="passwd" ><br>
+        <input type="submit" value="login">
+    </form>
+
+    <!-- signup -->
+    <a href="/signup"><p>新規登録はこちら</p></a>
+    <!-- /signup -->
+</div> <!-- /container -->
+
+{{end}}
