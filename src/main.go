@@ -20,6 +20,7 @@ func main(){
 	http.HandleFunc("/login/auth", HandleLoginAuth)
 	http.HandleFunc("/signup", HandleSignup)
 	http.HandleFunc("/signup/auth", HandleSignupAuth)
+	http.HandleFunc("/test", HandleTest)
 
 	log.Printf("Server listening on port %s", port)
 	server.ListenAndServe()

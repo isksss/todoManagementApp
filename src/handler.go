@@ -40,3 +40,21 @@ func HandleSignupAuth(w http.ResponseWriter, r *http.Request){
 	
 	generateHTML(w, "", "_layout", "_public.navigate", "_footer", "login")
 }
+
+/***** ***** ***** ***** *****
+TestCode:
+***** ***** ***** ***** *****/
+func HandleTest(){
+
+	i := 0
+	for i < 10{
+		user := Users{
+			name: "name-"+i,
+			email: "sample-"+i+"@sample.com",
+			password: "xxxxxxxx"
+		}
+		if err := createUser(user);err != nil{
+			log.FatalF(err)
+		}
+	}
+}
