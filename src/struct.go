@@ -8,8 +8,8 @@ type Content struct {
 // user data
 type Users struct {
 	// uuid int
-	name string
-	email string
+	name     string
+	email    string
 	password string
 }
 

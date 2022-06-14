@@ -1,0 +1,31 @@
+{{ define "content"}}
+<div>
+    <h1>test html</h1>
+    <div>
+        INPUT(NOT GET-PARAM)<br>
+        <form method="post" action="/test" enctype="application/x-www-form-urlencoded">
+            <p>name</p>
+            <input type="text" name="name"><br>
+            <p>e-mail</p>
+            <input type="email" name="email"><br>
+            <p>password</p>
+            <input type="password" name="password" ><br>
+            <input type="submit" value="SHOW VALUES">
+        </form>
+    </div>
+    <!-- <p>-----</p>
+    <div>
+        INPUT(GET-PARAM)<br>
+        <form method="post" action="/test?world=earth&name2=unko" enctype="application/x-www-form-urlencoded">
+            <p>name</p>
+            <input type="text" name="name"><br>
+            <p>e-mail</p>
+            <input type="email" name="email"><br>
+            <p>password</p>
+            <input type="password" name="password" ><br>
+            <input type="submit" value="SHOW VALUES">
+        </form>
+    </div> -->
+</div>
+
+{{end}}

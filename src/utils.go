@@ -1,29 +1,28 @@
 package main
 
-
 import (
-	"net/http"
-	"fmt"
-	"html/template"
 	"crypto/sha512"
 	"encoding/hex"
+	"fmt"
+	"html/template"
 	"log"
-	
+	"net/http"
+
 	"database/sql"
 	"os"
+
 	_ "github.com/go-sql-driver/mysql" //  for MySQL
 
 	"github.com/joho/godotenv"
-	
 )
 
 /*
 generateHTML:
 テンプレートの解析などを行う。
 */
-func generateHTML(w http.ResponseWriter, data interface{}, file ...string){
+func generateHTML(w http.ResponseWriter, data interface{}, file ...string) {
 	var files []string
-	for _, file := range file{
+	for _, file := range file {
 		files = append(files, fmt.Sprintf("templates/%s.html", file))
 	}
 	templates := template.Must(template.ParseFiles(files...))
@@ -45,6 +44,7 @@ func passwdEncrypt(passwd string) string {
 DataBase:
 */
 var Db *sql.DB
+
 func init() {
 	/*
 		データベース接続用のメソッド
@@ -68,20 +68,19 @@ func init() {
 	}
 }
 
-
 /*
 環境変数読み込み:
 */
 func loadEnv() {
 	/*  for devlop.
-		if you deploy this, uncomment and comment.
+	if you deploy this, uncomment and comment.
 	*/
 	err := godotenv.Load("./.env.dev")
 	//err := godotenv.Load("./.env")
 
 	if err != nil {
 		log.Printf("ERROR: Don't load Env")
-	}else{
+	} else {
 		log.Printf("SUCCESS: Load Env")
 	}
 }
