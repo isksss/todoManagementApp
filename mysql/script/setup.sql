@@ -24,4 +24,4 @@ create table todoList (
 -- );
 
 -- insert default user 
-INSERT INTO users(name, email, password) VALUES("admin", "sample@sample.com", "xxxxxxxx");
+-- INSERT INTO users(name, email, password) VALUES("admin", "sample@sample.com", "xxxxxxxx");
