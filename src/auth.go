@@ -1,23 +1,30 @@
 package main
 
+// "database/sql"
 import (
-		// "database/sql"
-		"log"
+	"log"
+	// "database/sql"
 )
 
-func createUser(user Users) (err error){
+func (user Users) createUser() (err error) {
 	statement := "INSERT INTO users(name, email, password) VALUES(?, ?, ?);"
 	stmt, err := Db.Prepare(statement)
-	if err != nil{
-		return
+	if err != nil {
+		log.Fatal("db error.")
 	}
-	log.Printf("insert")
 	defer stmt.Close()
-	log.Printf("insert")
-	var id int
-	err = stmt.QueryRow(user.name, user.email, user.password).Scan(&id)
-	log.Printf("insert")
-	// log.Printf(err)
 
+	// 実行
+	res, err := stmt.Exec(user.name, user.email, user.password)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	// 結果の取得
+	lastInsertID, err := res.LastInsertId()
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Println(lastInsertID)
 	return
 }

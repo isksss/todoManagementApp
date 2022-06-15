@@ -25,16 +25,16 @@ func HandleSignup(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleSignupAuth(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
+	// r.ParseForm()
 	user := Users{
-		name:     r.FormValue("name"),
-		email:    r.FormValue("email"),
-		password: passwdEncrypt(r.FormValue("password")),
+		name:     r.PostFormValue("name"),
+		email:    r.PostFormValue("email"),
+		password: passwdEncrypt(r.PostFormValue("password")),
 	}
 
 	log.Printf("NAME: %s, E-MAIL: %s, PASS: %s\n", user.name, user.email, user.password)
 
-	if err := createUser(user); err != nil {
+	if err := user.createUser(); err != nil {
 		panic(err)
 	}
 
