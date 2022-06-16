@@ -84,3 +84,10 @@ func loadEnv() {
 		log.Printf("SUCCESS: Load Env")
 	}
 }
+
+// ShowError
+func showError(err error) {
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+}
