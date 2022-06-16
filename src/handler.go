@@ -17,13 +17,22 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleLoginAuth(w http.ResponseWriter, r *http.Request) {
-	// user := Users{
-	// 	name:     r.PostFormValue("name"),
-	// 	email:    r.PostFormValue("email"),
-	// 	password: passwdEncrypt(r.PostFormValue("password")),
-	// }
-	// err := user.login_auth()
-	generateHTML(w, "", "_private.layout", "_public.navigate", "_footer", "mypage")
+	user := Users{
+		name:     r.PostFormValue("name"),
+		email:    r.PostFormValue("email"),
+		password: passwdEncrypt(r.PostFormValue("password")),
+	}
+	if user.loginAuth() {
+		// login
+		log.Printf("LOGIN: %s", user.name)
+		generateHTML(w, user, "_private.layout", "_public.navigate", "_footer", "mypage")
+	} else {
+		//not login
+		log.Printf("NOT LOGIN: %s", user.name)
+		generateHTML(w, "", "_layout", "_public.navigate", "_footer", "login")
+	}
+
+	// generateHTML(w, "", "_private.layout", "_public.navigate", "_footer", "mypage")
 }
 
 func HandleSignup(w http.ResponseWriter, r *http.Request) {

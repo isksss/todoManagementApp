@@ -2,6 +2,7 @@ package main
 
 // "database/sql"
 import (
+	"fmt"
 	"log"
 	// "database/sql"
 )
@@ -31,13 +32,36 @@ func (user Users) createUser() (err error) {
 }
 
 // login
-func (user Users) login_auth() (err error) {
+func (user Users) loginAuth() (bl bool) {
 	statement := "SELECT password FROM users WHERE name = ? OR email = ?"
 
 	stmt, err := Db.Prepare(statement)
-	showError(err)
+	// showError(err)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
 
-	rows, err := stmt.Exec(user.name, user.email)
+	rows, err := stmt.Query(user.name, user.email)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+	defer rows.Close()
 
+	var password string
+	for rows.Next() {
+		rows.Scan(&password)
+		// log.Printf("DB GET PASSWORD: %s\n", )
+		fmt.Println(&password)
+		log.Printf("USER GET PASSWORD: %s\n", user.password)
+		if user.password == password {
+			return true
+		}
+	}
+	err = rows.Err()
+	if err != nil {
+		panic(err)
+	}
 	stmt.Close()
+
+	return false
 }

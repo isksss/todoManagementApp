@@ -85,9 +85,9 @@ func loadEnv() {
 	}
 }
 
-// ShowError
-func showError(err error) {
-	if err != nil {
-		log.Fatal(err.Error())
-	}
-}
+// // ShowError
+// func showError(err error) {
+// 	if err != nil {
+// 		log.Fatal(err.Error())
+// 	}
+// }
