@@ -44,13 +44,14 @@ func HandleSignupAuth(w http.ResponseWriter, r *http.Request) {
 	user := Users{
 		name:     r.PostFormValue("name"),
 		email:    r.PostFormValue("email"),
-		password: passwdEncrypt(r.PostFormValue("password")),
+		password: passwdEncrypt(passwdEncrypt(r.PostFormValue("password"))),
 	}
 
 	log.Printf("NAME: %s, E-MAIL: %s, PASS: %s\n", user.name, user.email, user.password)
 
 	if err := user.createUser(); err != nil {
-		panic(err)
+		// panic(err)
+		log.Println(err.Error())
 	}
 
 	generateHTML(w, "", "_layout", "_public.navigate", "_footer", "login")
