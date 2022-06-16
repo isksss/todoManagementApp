@@ -17,6 +17,12 @@ func HandleLogin(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleLoginAuth(w http.ResponseWriter, r *http.Request) {
+	// user := Users{
+	// 	name:     r.PostFormValue("name"),
+	// 	email:    r.PostFormValue("email"),
+	// 	password: passwdEncrypt(r.PostFormValue("password")),
+	// }
+	// err := user.login_auth()
 	generateHTML(w, "", "_private.layout", "_public.navigate", "_footer", "mypage")
 }
 

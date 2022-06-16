@@ -6,6 +6,7 @@ import (
 	// "database/sql"
 )
 
+// CreateUser
 func (user Users) createUser() (err error) {
 	statement := "INSERT INTO users(name, email, password) VALUES(?, ?, ?);"
 	stmt, err := Db.Prepare(statement)
@@ -25,6 +26,11 @@ func (user Users) createUser() (err error) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	log.Println(lastInsertID)
+	log.Println("CREATE_USER_ID: ", lastInsertID)
 	return
 }
+
+// login
+// func (user Users) login_auth() (err error) {
+// 	// statement := "SELECT password FROM users WHERE name = ? OR email = ?"
+// }

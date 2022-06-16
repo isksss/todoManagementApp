@@ -1,9 +1,9 @@
 package main
 
 // Header
-type Content struct {
-	userData Users
-}
+// type Content struct {
+// 	userData Users
+// }
 
 // user data
 type Users struct {
