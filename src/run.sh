@@ -2,4 +2,4 @@
 echo ':::BUILD GO APP:::'
 go build
 echo ':::RUN   GO APP:::'
-./todo
+./todo_app
