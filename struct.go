@@ -7,7 +7,7 @@ package main
 
 // user data
 type Users struct {
-	// uuid int
+	id int
 	name     string
 	email    string
 	password string

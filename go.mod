@@ -1,4 +1,4 @@
-module github.com/isksss/todo_app
+module github.com/isksss/todoManagementApp
 
 go 1.18
 
