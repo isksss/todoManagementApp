@@ -2,25 +2,20 @@ package auth
 
 import (
 	"log"
+
+	"github.com/isksss/todoManagementApp/db"
 )
 
-type Users struct {
-	id       int
-	name     string
-	email    string
-	password string
-}
-
-func (user *Users) createUser() (err error) {
-	statement := "INSERT INTO users(name, email, password) VALUES(?, ?, ?);"
-	stmt, err := Db.Prepare(statement)
+func (user Users) CreateUser() (err error) {
+	statement := "INSERT INTO users(id, name, email, password) VALUES(?, ?, ?, ?);"
+	stmt, err := db.Db.Prepare(statement)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
 	defer stmt.Close()
 
 	// 実行
-	res, err := stmt.Exec(user.name, user.email, user.password)
+	res, err := stmt.Exec(user.Id, user.Name, user.Email, user.Password)
 	if err != nil {
 		log.Fatal(err.Error())
 	}

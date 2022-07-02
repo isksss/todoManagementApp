@@ -1,4 +1,4 @@
-package handler
+package router
 
 import (
 	"fmt"
@@ -11,6 +11,7 @@ func generateHTML(w http.ResponseWriter, data interface{}, file ...string) {
 	for _, file := range file {
 		files = append(files, fmt.Sprintf("templates/%s.html", file))
 	}
+
 	templates := template.Must(template.ParseFiles(files...))
 
 	templates.ExecuteTemplate(w, "layout", data)
