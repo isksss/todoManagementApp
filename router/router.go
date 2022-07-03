@@ -1,7 +1,6 @@
 package router
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
@@ -29,10 +28,32 @@ func RouteSignUp(w http.ResponseWriter, r *http.Request) {
 			Email:    r.PostFormValue("email"),
 			Password: cr.PasswdEncrypt(r.PostFormValue("password")),
 		}
-		fmt.Print(user)
+
 		err := user.CreateUser()
 		if err != nil {
 			log.Fatalf(err.Error())
+		}
+
+		http.Redirect(w, r, "/login", 301)
+
+	}
+}
+
+func RouteLogin(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		generateHTML(w, "", "_layout", "_navigate", "_footer", "login")
+	} else {
+		user := auth.Users{
+			Name:     r.PostFormValue("name"),
+			Email:    r.PostFormValue("email"),
+			Password: cr.PasswdEncrypt(r.PostFormValue("password")),
+		}
+
+		if user.CheckLogin() {
+			// MakeSession
+			// Redirect Task
+		} else {
+			http.Redirect(w, r, "/login", 301)
 		}
 	}
 }

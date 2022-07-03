@@ -19,6 +19,7 @@ func main() {
 	// ハンドラー
 	http.HandleFunc("/", r.RouteIndex)
 	http.HandleFunc("/signup", r.RouteSignUp)
+	http.HandleFunc("/login", r.RouteLogin)
 
 	log.Printf("Server listening on port %s", port)
 	server.ListenAndServe()

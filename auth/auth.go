@@ -46,3 +46,7 @@ func (user Users) CheckLogin() (bl bool) {
 
 	return
 }
+
+func (user Users) MakeSession() {
+
+}
