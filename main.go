@@ -9,7 +9,7 @@ import (
 
 func main() {
 
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("public/"))))
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("template/public/"))))
 
 	port := "8080" //ポート番号
 	server := http.Server{
