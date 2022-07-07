@@ -51,9 +51,14 @@ func RouteLogin(w http.ResponseWriter, r *http.Request) {
 
 		if user.CheckLogin() {
 			// MakeSession
+			user.MakeSession(w)
 			// Redirect Task
 		} else {
 			http.Redirect(w, r, "/login", 301)
 		}
 	}
+}
+
+func RouteTask(w http.ResponseWriter, r *http.Request){
+
 }

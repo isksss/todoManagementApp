@@ -5,6 +5,9 @@ import (
 	"encoding/hex"
 	"math/rand"
 	"time"
+	"log"
+
+	"github.com/google/uuid"
 )
 
 func PasswdEncrypt(passwd string) (hashed string) {
@@ -25,6 +28,13 @@ func CreateRandomInt(min int, max int) (num int) {
 	return
 }
 
-func NewSessionKey() {
+func NewSessionKey() (sess string){
+	uuidObj, err := uuid.NewRandom()
+	if err != nil{
+		log.Fatalf(err)
+	}
 
+	sess = uuidObj.string()
+
+	return sess
 }

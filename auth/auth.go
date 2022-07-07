@@ -2,8 +2,10 @@ package auth
 
 import (
 	"log"
+	"net/http"
 
 	"github.com/isksss/todoManagementApp/db"
+	cr "github.com/isksss/todoManagementApp/crypto"
 )
 
 type Users struct {
@@ -47,6 +49,11 @@ func (user Users) CheckLogin() (bl bool) {
 	return
 }
 
-func (user Users) MakeSession() {
+func (user Users) MakeSession(w http.ResponseWriter) {
+	
+	sess := cr.NewSessionKey()
+	
+	statement := "INSERT INTO sessions(session_id, user_id) VALUE (?, ?);"
+	
 
 }

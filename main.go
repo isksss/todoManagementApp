@@ -20,6 +20,7 @@ func main() {
 	http.HandleFunc("/", r.RouteIndex)
 	http.HandleFunc("/signup", r.RouteSignUp)
 	http.HandleFunc("/login", r.RouteLogin)
+	http.HandleFunc("/task", r.RouteTask)
 
 	log.Printf("Server listening on port %s", port)
 	server.ListenAndServe()
